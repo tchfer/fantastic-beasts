@@ -40,3 +40,31 @@ function initAccordion() {
 }
 
 initAccordion();
+
+function initSmoothScroll() {
+  /* Select all archors with href that (starts with ^) # */
+  const internalLinks = document.querySelectorAll('.js-menu a[href^="#"]');
+  
+  function scrollToSection(event) {
+    event.preventDefault();
+    const href = event.currentTarget.getAttribute('href');
+    const section = document.querySelector(href);
+    section.scrollIntoView({
+      behavior: 'smooth',
+      block: 'start',
+    })
+  
+    // Alternative way to apply smooth scrolling
+    // const top = section.offsetTop;
+    // window.scrollTo({
+    //   top: top,
+    //   behavior:'smooth',
+    // });
+  }
+  
+  internalLinks.forEach(link => {
+    link.addEventListener('click', scrollToSection);
+  })
+}
+
+initSmoothScroll();
