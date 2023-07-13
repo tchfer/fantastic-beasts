@@ -20,3 +20,23 @@ function initTabNav() {
 }
 
 initTabNav();
+
+function initAccordion() {
+  const activeClass = 'active';
+  const accordingList = document.querySelectorAll('.js-accordion dt');
+  if(accordingList.length) {
+    accordingList[0].classList.add(activeClass);
+    accordingList[0].nextElementSibling.classList.add(activeClass);
+    
+    function activeAccordion() {
+      this.classList.toggle(activeClass)
+      this.nextElementSibling.classList.toggle(activeClass)
+    }
+    
+    accordingList.forEach((item) => {
+      item.addEventListener('click', activeAccordion);
+    })
+  }
+}
+
+initAccordion();
