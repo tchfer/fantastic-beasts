@@ -68,3 +68,29 @@ function initSmoothScroll() {
 }
 
 initSmoothScroll();
+
+function initScrollAnimation() {
+  const sections = document.querySelectorAll('.js-scroll');
+  
+  if(sections.length) {
+    const windowSize = window.innerHeight * 0.6;
+    
+    function animateOnScroll() {
+      sections.forEach(section => {
+        const sectionTop = section.getBoundingClientRect().top;
+        const isSectionVisible = (sectionTop - windowSize) < 0;
+        if(isSectionVisible) {
+          section.classList.add('active');
+        } else {
+          section.classList.remove('active');
+        }
+      })
+    }
+    
+    animateOnScroll();
+    
+    window.addEventListener('scroll', animateOnScroll);
+  }
+}
+
+initScrollAnimation();
